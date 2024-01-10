@@ -94,8 +94,12 @@ def countVehicles(param):
 			try :
 				ret, frame = cap.read()
 				img = cv2.resize(frame, (img_size, img_size))
-			except:
-				print(total_str)
+			except Exception as e:
+				print(e)
+		print('Exiting program gracefully.')
+		cap.release()
+		cv2.destroyAllWindows()
+		break
 
 			
 			output_img = frame if use_original_video_size_as_output_size else img
