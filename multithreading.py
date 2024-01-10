@@ -33,7 +33,12 @@ def countVehicles(param):
 	video_name = os.path.basename(video_path)
 
 	# print("Loading video {video_path}...".format(video_path=video_path))
-	if not os.path.exists(video_path):
+	try:
+    cap = cv2.VideoCapture(video_path)
+    if not cap.isOpened():
+        raise Exception("Error: Unable to open video file.")
+except Exception as e:
+    print("Error: ", e)
 		print("Error: Video file does not exist.")
 		cap.release()
     cv2.destroyAllWindows()
@@ -219,8 +224,11 @@ def countVehicles(param):
 			elif key == ord('p'):
 				cv2.waitKey(0) # PAUSE (Enter any key to continue)
 
-	cap.release()
-	cv2.destroyAllWindows()
+try:
+    cv2.destroyAllWindows()
+    cap.release()
+except Exception as e:
+    print("Error: ", e)
 	print("Exited")
 
 	"""
