@@ -7,6 +7,7 @@ import time
 import dlib
 import tensorflow.compat.v1 as tf
 import os
+import sys
 import threading
 
 def countVehicles(param):
@@ -33,7 +34,7 @@ def countVehicles(param):
 	video_name = os.path.basename(video_path)
 
 	# print("Loading video {video_path}...".format(video_path=video_path))
-	if not os.path.exists(video_path):
+	    if not os.path.exists(video_path):
 		print("File does not exist. Exited.")
 		exit()
 
