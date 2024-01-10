@@ -36,6 +36,16 @@ def countVehicles(param):
 	try:
     cap = cv2.VideoCapture(video_path)
     if not cap.isOpened():
+        raise Exception('Error: Unable to open video file.')
+except Exception as e:
+    print('Error:', e)
+    print('Error: Video file does not exist.')
+    cap.release()
+    cv2.destroyAllWindows()
+    print('Exiting program gracefully.')
+    break
+    cap = cv2.VideoCapture(video_path)
+    if not cap.isOpened():
         raise Exception("Error: Unable to open video file.")
 except Exception as e:
     print("Error: ", e)
