@@ -1,4 +1,4 @@
-import cv2 from opencv-python
+import cv2
 from sys import sys
 from tracking.centroidtracker import CentroidTracker
 from tracking.trackableobject import TrackableObject
@@ -59,8 +59,8 @@ def countVehicles(param):
 		cap = VideoCapture(video_path)
 
 		# Get video size (just for log purposes)
-		width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-		height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+		width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)))
+		height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)))
 
 		# Scale used for output window size and net size
 		width_scale = 1
