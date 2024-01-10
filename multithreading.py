@@ -1,3 +1,4 @@
+from sys import sys
 from tracking.centroidtracker import CentroidTracker
 from tracking.trackableobject import TrackableObject
 import tensornets as nets
@@ -34,8 +35,8 @@ def countVehicles(param):
 
 	# print("Loading video {video_path}...".format(video_path=video_path))
 	if not os.path.exists(video_path):
-		print("File does not exist. Exited.")
-		exit()
+		print("Error: Video file does not exist.")
+		sys.exit()
 
 	# YoloV3 detects 80 classes represented below
 	all_classes = ["person", "bicycle", "car", "motorbike", "aeroplane", "bus", "train", "truck", \
