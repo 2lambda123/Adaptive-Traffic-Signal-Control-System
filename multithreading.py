@@ -1,8 +1,9 @@
+from multithreading import cv2
 from sys import sys
 from tracking.centroidtracker import CentroidTracker
 from tracking.trackableobject import TrackableObject
 from yolov3 import nets
-import cv2
+from cv2 import VideoCapture
 import numpy as np
 import time
 import dlib
@@ -55,7 +56,7 @@ def countVehicles(param):
 
 	with tf.Session() as sess:
 		sess.run(model.pretrained())
-		cap = cv2.VideoCapture(video_path)
+		cap = VideoCapture(video_path)
 
 		# Get video size (just for log purposes)
 		width =  int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
