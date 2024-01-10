@@ -6,7 +6,7 @@ import cv2
 import numpy as np
 import time
 import dlib
-import tensorflow as tf
+from tensorflow import tf
 import os
 import threading
 
