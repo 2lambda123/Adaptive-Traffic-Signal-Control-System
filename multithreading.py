@@ -1,6 +1,6 @@
 from tracking.centroidtracker import CentroidTracker
 from tracking.trackableobject import TrackableObject
-import tensornets as nets
+from tensornets import YOLOv3COCO, Darknet19
 import cv2
 import numpy as np
 import time
@@ -19,7 +19,7 @@ def countVehicles(param):
 	# Image size must be '416x416' as YoloV3 network expects that specific image size as input
 	img_size = 416
 	inputs = tf.placeholder(tf.float32, [None, img_size, img_size, 3])
-	model = nets.YOLOv3COCO(inputs, nets.Darknet19)
+	model = YOLOv3COCO(inputs, Darknet19)
 
 	ct = CentroidTracker(maxDisappeared=5, maxDistance=50) # Look into 'CentroidTracker' for further info about parameters
 	trackers = [] # List of all dlib trackers
@@ -77,7 +77,7 @@ def countVehicles(param):
 			pt = (int(pt[0] * width_scale), int(pt[1] * height_scale))
 			cv2.putText(img, text, pt, font, font_scale, color, lineType)
 
-		def drawCircleCV2(img, center, radius, color, thickness, width_scale=width_scale, height_scale=height_scale):
+		def drawCircleCV2(img, center, radius, color, thickness, width_scale=1, height_scale=1)
 			center = (int(center[0] * width_scale), int(center[1] * height_scale))
 			cv2.circle(img, center, radius, color, thickness)
 
