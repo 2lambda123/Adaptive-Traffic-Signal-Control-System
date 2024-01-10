@@ -92,15 +92,19 @@ def countVehicles(param):
 
 		skipped_frames_counter = 0
 
-		while(cap.isOpened()):
+		try:
+    try:
+    while(cap.isOpened()):
 			try :
-				ret, frame = cap.read()
+				try:
+    ret, frame = cap.read()
 				img = cv2.resize(frame, (img_size, img_size))
 			except:
 				logging.error('Error occurred while processing frame')
 
 			
 			output_img = frame if use_original_video_size_as_output_size else img
+			tracker_rects = []
 
 			tracker_rects = []
 
