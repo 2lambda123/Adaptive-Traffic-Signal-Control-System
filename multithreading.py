@@ -6,7 +6,7 @@ import cv2
 import numpy as np
 import time
 import dlib
-import tensorflow.compat.v1 as tf
+import tensorflow as tf
 import os
 import threading
 
@@ -15,7 +15,7 @@ def countVehicles(param):
 	# list -> number of vehicles will be written in the list
 	# index ->Index at which data has to be written
 
-	tf.disable_v2_behavior()
+	from tensorflow import disable_v2_behavior
 
 	# Image size must be '416x416' as YoloV3 network expects that specific image size as input
 	img_size = 416
