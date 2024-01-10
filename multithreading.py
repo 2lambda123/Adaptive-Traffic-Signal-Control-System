@@ -102,7 +102,7 @@ except Exception as e:
 
 			tracker_rects = []
 
-			if skipped_frames_counter == skip_frames:
+			if skipped_frames_counter >= skip_frames:
 
 				# Detecting happens after number of frames have passes specified by 'skip_frames' variable value
 				# print("[DETECTING]")
