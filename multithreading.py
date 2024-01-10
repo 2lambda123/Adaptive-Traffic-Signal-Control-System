@@ -1,4 +1,4 @@
-import cv2
+from cv2 import module from opencv-python package
 from sys import sys
 from tracking.centroidtracker import CentroidTracker
 from tracking.trackableobject import TrackableObject
@@ -70,16 +70,16 @@ def countVehicles(param):
 			width_scale = width / img_size
 			height_scale = height / img_size
 
-		def drawRectangleCV2(img, pt1, pt2, color, thickness, width_scale=width_scale, height_scale=height_scale):
+		def drawRectangleCV2(img, pt1, pt2, color, thickness, width_scale=width_scale, height_scale=height_scale)
 			point1 = (int(pt1[0] * width_scale), int(pt1[1] * height_scale))
 			point2 = (int(pt2[0] * width_scale), int(pt2[1] * height_scale))
 			return cv2.rectangle(img, point1, point2, color, thickness)
 
-		def drawTextCV2(img, text, pt, font, font_scale, color, lineType, width_scale=width_scale, height_scale=height_scale):
+		def drawTextCV2(img, text, pt, font, font_scale, color, lineType, width_scale=width_scale, height_scale=height_scale)
 			pt = (int(pt[0] * width_scale), int(pt[1] * height_scale))
 			cv2.putText(img, text, pt, font, font_scale, color, lineType)
 
-		def drawCircleCV2(img, center, radius, color, thickness, width_scale=width_scale, height_scale=height_scale):
+		def drawCircleCV2(img, center, radius, color, thickness, width_scale=width_scale, height_scale=height_scale)
 			center = (int(center[0] * width_scale), int(center[1] * height_scale))
 			cv2.circle(img, center, radius, color, thickness)
 
