@@ -89,8 +89,11 @@ def countVehicles(param):
 
 		while(cap.isOpened()):
 			try :
-				ret, frame = cap.read()
-				img = cv2.resize(frame, (img_size, img_size))
+				try:
+	    ret, frame = cap.read()
+					    img = cv2.resize(frame, (img_size, img_size)
+except Exception as e:
+	    print(e)
 			except:
 				print(total_str)
 
