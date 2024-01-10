@@ -4,15 +4,9 @@ import logging
 import traceback
 import sys
 import cv2
-from keras.models import Model
-from keras.models import Model
-import cv2
 import numpy as np
 import time
-import dlib
-import tensorflow.compat.v1 as tf
 import os
-import threading
 
 def countVehicles(param):
 	# param -> path of the video
@@ -26,7 +20,10 @@ def countVehicles(param):
 	inputs = tf.placeholder(tf.float32, [None, img_size, img_size, 3])
 	model = tf.keras.applications.YOLOv3(weights='yolov3.weights', classes=80, input_shape=(416, 416, 3))
 
-	ct = CentroidTracker(maxDisappeared=5, maxDistance=50) # Look into 'CentroidTracker' for further info about parameters
+	# Create an instance of the CentroidTracker class
+    ct = CentroidTracker(maxDisappeared=5, maxDistance=50)
+    # Store the tracked objects in the trackableObjects dictionary
+    trackableObjects = {} # Look into 'CentroidTracker' for further info about parameters
 	trackers = [] # List of all dlib trackers
 	trackableObjects = {} # Dictionary of trackable objects containing object's ID and its' corresponding centroid/s
 	skip_frames = 10 # Numbers of frames to skip from detecting
@@ -206,7 +203,10 @@ def countVehicles(param):
 				# Draw both the ID of the object and the centroid of the object on the output frame
 				object_id = "ID {}".format(objectID)
 				drawTextCV2(output_img, object_id, (centroid[0] - 10, centroid[1] - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1)
-				drawCircleCV2(output_img, (centroid[0], centroid[1]), 2, (0, 255, 0), -1)
+				class VehicleCounter:
+    def __init__(self, param):
+        
+    def count_vehicles(self,param):
 
 				# Display the total count so far
 				total_str = str(total)
