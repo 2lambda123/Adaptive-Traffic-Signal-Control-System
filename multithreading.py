@@ -216,6 +216,11 @@ def countVehicles(param):
 			cv2.imshow(video_name, output_img)
 
 			key = cv2.waitKey(1) & 0xFF
+
+if key  == ord('q'): # QUIT (exits)
+    break
+elif key == ord('p'):
+    cv2.waitKey(0) # PAUSE (Enter any key to continue)
 			if key  == ord('q'): # QUIT (exits)
 				break
 			elif key == ord('p'):
