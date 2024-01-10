@@ -1,6 +1,11 @@
 from tracking.centroidtracker import CentroidTracker
 from tracking.trackableobject import TrackableObject
-import tensornets as nets
+import logging
+import traceback
+import sys
+import cv2
+from keras.models import Model
+from keras.models import Model
 import cv2
 import numpy as np
 import time
@@ -14,12 +19,12 @@ def countVehicles(param):
 	# list -> number of vehicles will be written in the list
 	# index ->Index at which data has to be written
 
-	tf.disable_v2_behavior()
+	tf.compat.v1.disable_eager_execution()
 
 	# Image size must be '416x416' as YoloV3 network expects that specific image size as input
 	img_size = 416
 	inputs = tf.placeholder(tf.float32, [None, img_size, img_size, 3])
-	model = nets.YOLOv3COCO(inputs, nets.Darknet19)
+	model = tf.keras.applications.YOLOv3(weights='yolov3.weights', classes=80, input_shape=(416, 416, 3))
 
 	ct = CentroidTracker(maxDisappeared=5, maxDistance=50) # Look into 'CentroidTracker' for further info about parameters
 	trackers = [] # List of all dlib trackers
@@ -92,7 +97,7 @@ def countVehicles(param):
 				ret, frame = cap.read()
 				img = cv2.resize(frame, (img_size, img_size))
 			except:
-				print(total_str)
+				logging.error('Error occurred while processing frame')
 
 			
 			output_img = frame if use_original_video_size_as_output_size else img
