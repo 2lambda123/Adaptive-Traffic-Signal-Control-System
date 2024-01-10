@@ -33,7 +33,8 @@ def countVehicles(param):
 	video_name = os.path.basename(video_path)
 
 	# print("Loading video {video_path}...".format(video_path=video_path))
-	try:
+	while(cap.isOpened()):
+    try :
     try:
         cap = cv2.VideoCapture(video_path)
         if not cap.isOpened():
