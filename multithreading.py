@@ -87,7 +87,7 @@ def countVehicles(param):
 
 		skipped_frames_counter = 0
 
-		while(cap.isOpened()):
+		while(True):
     try:
 			try:
 			try:
