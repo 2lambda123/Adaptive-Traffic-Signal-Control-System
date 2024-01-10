@@ -252,9 +252,7 @@ except Exception as e:
 	print("Exited")
 
 	"""
-	function which will run our code
-
-	will write the number of veicles in the list provided
+	
 	"""
 
 if __name__ == "__main__":
