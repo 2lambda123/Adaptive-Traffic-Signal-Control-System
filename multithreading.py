@@ -88,10 +88,13 @@ def countVehicles(param):
 		skipped_frames_counter = 0
 
 		while(cap.isOpened()):
+    try:
 			try:
 			try:
 		ret, frame = cap.read()
 	except Exception as e:
+        print(e)
+        continue
 		print(e)
 		img = cv2.resize(frame, (img_size, img_size))
 except Exception as e:
@@ -141,6 +144,9 @@ except Exception as e:
 							# print("Detected ", class_name, " with confidence of ", np_detections[class_index][i][4])
 
 							local_count += 1
+    except Exception as e:
+        print(e)
+        continue
 							startX, startY, endX, endY = box[0], box[1], box[2], box[3]
 
 							drawRectangleCV2(output_img, (startX, startY), (endX, endY), (0, 255, 0), 1)
