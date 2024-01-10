@@ -89,6 +89,7 @@ def countVehicles(param):
 
 		while(True):
     try:
+    try:
 			try:
 			try:
 		ret, frame = cap.read()
@@ -220,7 +221,11 @@ except Exception as e:
 				drawTextCV2(output_img, total_str, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
 
 			# Display the current frame (with all annotations drawn up to this point)
-			cv2.imshow(video_name, output_img)
+			try:
+						cv2.imshow(video_name, output_img)
+					except Exception as e:
+						print(e)
+						# Log the error message for debugging
 
 			key = cv2.waitKey(1) & 0xFF
 			if key  == ord('q'): # QUIT (exits)
