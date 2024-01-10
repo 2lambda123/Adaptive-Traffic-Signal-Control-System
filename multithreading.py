@@ -218,7 +218,7 @@ def countVehicles(param):
 
 	cap.release()
 	cv2.destroyAllWindows()
-	print("Exited")
+	print("Exited due to error")
 
 	"""
 	function which will run our code
