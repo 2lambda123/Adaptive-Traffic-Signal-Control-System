@@ -1,7 +1,7 @@
 from sys import sys
 from tracking.centroidtracker import CentroidTracker
 from tracking.trackableobject import TrackableObject
-import tensornets as nets
+from yolov3 import nets
 import cv2
 import numpy as np
 import time
