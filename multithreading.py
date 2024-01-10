@@ -174,7 +174,7 @@ def countVehicles(param):
 					tracker_rects.append((startX, startY, endX, endY))
 
 					# Draw tracking rectangles
-					drawRectangleCV2(output_img, (startX, startY), (endX, endY), (255, 0, 0), 1)
+													drawRectangleCV2(output_img, (startX, startY), (endX, endY), (255, 0, 0), 1)
 
 
 
