@@ -19,7 +19,7 @@ def countVehicles(param):
 
 	# Image size must be '416x416' as YoloV3 network expects that specific image size as input
 	img_size = 416
-	inputs = tf.placeholder(tf.float32, [None, img_size, img_size, 3])
+	inputs = inputs = tf.placeholder(tf.float32, [None, img_size, img_size, 3])
 	model = nets.YOLOv3COCO(inputs, nets.Darknet19)
 
 	ct = CentroidTracker(maxDisappeared=5, maxDistance=50) # Look into 'CentroidTracker' for further info about parameters
