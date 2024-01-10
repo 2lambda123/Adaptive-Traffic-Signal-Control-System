@@ -103,7 +103,11 @@ except Exception as e:
         continue
 		print(e)
 		try:
-    img = cv2.resize(frame, (img_size, img_size))
+    		try:
+            img = cv2.resize(frame, (img_size, img_size))
+        except Exception as e:
+            print(e)
+            continue
 except Exception as e:
     print(e)
     continue
