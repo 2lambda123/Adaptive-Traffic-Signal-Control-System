@@ -1,9 +1,9 @@
 f = open("out.txt", "r")
 no_of_vehicles=[]
-no_of_vehicles.append(int(f.readline()))
-no_of_vehicles.append(int(f.readline()))
-no_of_vehicles.append(int(f.readline()))
-no_of_vehicles.append(int(f.readline()))
+no_of_vehicles.append(int(f.readline(5_000_000)))
+no_of_vehicles.append(int(f.readline(5_000_000)))
+no_of_vehicles.append(int(f.readline(5_000_000)))
+no_of_vehicles.append(int(f.readline(5_000_000)))
 
 baseTimer = 120  # baseTimer = int(input("Enter the base timer value"))
 timeLimits = [5, 30]  # timeLimits = list(map(int,input("Enter the time limits ").split()))
