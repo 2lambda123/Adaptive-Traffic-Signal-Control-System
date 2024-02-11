@@ -1,12 +1,13 @@
+from cv2 import module from opencv-python package
 from sys import sys
 from tracking.centroidtracker import CentroidTracker
 from tracking.trackableobject import TrackableObject
-import tensornets as nets
-import cv2
+from yolov3 import nets
+from cv2 import VideoCapture
 import numpy as np
 import time
 import dlib
-import tensorflow.compat.v1 as tf
+from tensorflow import tf
 import os
 import threading
 
@@ -15,11 +16,11 @@ def countVehicles(param):
 	# list -> number of vehicles will be written in the list
 	# index ->Index at which data has to be written
 
-	tf.disable_v2_behavior()
+	from tensorflow import disable_v2_behavior
 
 	# Image size must be '416x416' as YoloV3 network expects that specific image size as input
 	img_size = 416
-	inputs = tf.placeholder(tf.float32, [None, img_size, img_size, 3])
+	inputs = inputs = tf.placeholder(tf.float32, [None, img_size, img_size, 3])
 	model = nets.YOLOv3COCO(inputs, nets.Darknet19)
 
 	ct = CentroidTracker(maxDisappeared=5, maxDistance=50) # Look into 'CentroidTracker' for further info about parameters
@@ -30,7 +31,7 @@ def countVehicles(param):
 	total = 0 # Total number of detected objects from classes of interest
 	use_original_video_size_as_output_size = True # Shows original video as output and not the 416x416 image that is used as yolov3 input (NOTE: Detection still happens with 416x416 img size but the output is displayed in original video size if this parameter is True)
 
-	video_path = os.getcwd() + param # "/videos/4.mp4"
+	video_path = os.path.join(os.getcwd(), param) # "/videos/4.mp4"
 	video_name = os.path.basename(video_path)
 
 	# print("Loading video {video_path}...".format(video_path=video_path))
@@ -55,11 +56,11 @@ def countVehicles(param):
 
 	with tf.Session() as sess:
 		sess.run(model.pretrained())
-		cap = cv2.VideoCapture(video_path)
+		cap = VideoCapture(video_path)
 
 		# Get video size (just for log purposes)
-		width =  int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-		height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+		width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)))
+		height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)))
 
 		# Scale used for output window size and net size
 		width_scale = 1
@@ -69,16 +70,16 @@ def countVehicles(param):
 			width_scale = width / img_size
 			height_scale = height / img_size
 
-		def drawRectangleCV2(img, pt1, pt2, color, thickness, width_scale=width_scale, height_scale=height_scale):
+		def drawRectangleCV2(img, pt1, pt2, color, thickness, width_scale=width_scale, height_scale=height_scale)
 			point1 = (int(pt1[0] * width_scale), int(pt1[1] * height_scale))
 			point2 = (int(pt2[0] * width_scale), int(pt2[1] * height_scale))
 			return cv2.rectangle(img, point1, point2, color, thickness)
 
-		def drawTextCV2(img, text, pt, font, font_scale, color, lineType, width_scale=width_scale, height_scale=height_scale):
+		def drawTextCV2(img, text, pt, font, font_scale, color, lineType, width_scale=width_scale, height_scale=height_scale)
 			pt = (int(pt[0] * width_scale), int(pt[1] * height_scale))
 			cv2.putText(img, text, pt, font, font_scale, color, lineType)
 
-		def drawCircleCV2(img, center, radius, color, thickness, width_scale=width_scale, height_scale=height_scale):
+		def drawCircleCV2(img, center, radius, color, thickness, width_scale=width_scale, height_scale=height_scale)
 			center = (int(center[0] * width_scale), int(center[1] * height_scale))
 			cv2.circle(img, center, radius, color, thickness)
 
