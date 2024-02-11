@@ -29,11 +29,17 @@ def countVehicles(param):
 	total = 0 # Total number of detected objects from classes of interest
 	use_original_video_size_as_output_size = True # Shows original video as output and not the 416x416 image that is used as yolov3 input (NOTE: Detection still happens with 416x416 img size but the output is displayed in original video size if this parameter is True)
 
+	try:
+    
 	video_path = os.getcwd() + param # "/videos/4.mp4"
+except Exception as e:
+	print(e)
+	continue
 	video_name = os.path.basename(video_path)
 
 	# print("Loading video {video_path}...".format(video_path=video_path))
 	if not os.path.exists(video_path):
+    raise FileNotFoundError("File does not exist. Exiting.")
 		print("File does not exist. Exited.")
 		exit()
 
@@ -92,12 +98,25 @@ def countVehicles(param):
     try:
 			try:
 			try:
-		ret, frame = cap.read()
+		    try:
+            ret, frame = cap.read()
+            img = cv2.resize(frame, (img_size, img_size))
+    except Exception as e:
+        print(e)
+        continue
 	except Exception as e:
         print(e)
         continue
 		print(e)
-		img = cv2.resize(frame, (img_size, img_size))
+		try:
+    		try:
+            img = cv2.resize(frame, (img_size, img_size))
+        except Exception as e:
+            print(e)
+            continue
+except Exception as e:
+    print(e)
+    continue
 except Exception as e:
 	print(e)
 				try:
@@ -131,6 +150,7 @@ except Exception as e:
 				# each element contains a list of detected boxes, confidence level ...
 				detections = model.get_boxes(predictions, np_img.shape[1:3])
 				np_detections = np.array(detections)
+			try:
 
 				# Loop only through classes we are interested in
 				for class_index in classes.keys():
